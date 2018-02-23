@@ -1,6 +1,9 @@
 <h1>Home</h1>
 <% if current_user %>
   <p>Hello <%= current_user.name %>!</p>
+  <% tweets.each do |tweet| %>
+    <p><%= tweet.full_text %></p>
+  <% end %>
   <p><%= link_to "sign out", sign_out_path, method: :post %></p>
 <% else %>
   <p><%= link_to "Sign in with Twitter", "/auth/twitter" %></p>
