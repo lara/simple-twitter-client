@@ -3,5 +3,5 @@
   <p>Hello <%= current_user.name %>!</p>
   <p><%= link_to "sign out", sign_out_path, method: :post %></p>
 <% else %>
-  <p><%= link_to "sign in", sign_in_path, method: :post %></p>
+  <p><%= link_to "Sign in with Twitter", "/auth/twitter" %></p>
 <% end %>
