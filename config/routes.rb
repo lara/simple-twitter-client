@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  get 'static_pages/index'
-  root 'static_pages#index'
+  root "static_pages#index"
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  post "sign_in", to: "sessions#create", as: :sign_in
+  post "sign_out", to: "sessions#destroy", as: :sign_out
 end
