@@ -9,8 +9,23 @@ class TwitterService
     client.update(status)
   end
 
+  def tweets
+    fetch_tweets
+  end
+
   def fetch_tweets
     client.user_timeline(user.uid.to_i)
+  end
+
+  def store_tweets
+    tweets.each do |tweet|
+      Tweet.create(
+        tid: tweet.id,
+        text: tweet.full_text,
+        url: tweet.url,
+        user_id: user.id,
+      )
+    end
   end
 
   private
