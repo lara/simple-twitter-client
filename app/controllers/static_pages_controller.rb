@@ -7,6 +7,6 @@ class StaticPagesController < ApplicationController
 
   def tweets
     return nil unless current_user
-    TwitterService.new(current_user).fetch_tweets
+    current_user.tweets
   end
 end

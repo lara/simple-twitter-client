@@ -1,6 +1,7 @@
 <h1>Home</h1>
 <% if current_user %>
   <p>Hello <%= current_user.name %>!</p>
+  <p><%= link_to "sign out", sign_out_path, method: :post %></p>
 
   <%= form_for :tweet, url: tweets_path do |f| %>
     <%= f.text_area :text, maxlength: 280 %>
@@ -8,9 +9,8 @@
   <% end %>
 
   <% tweets.each do |tweet| %>
-    <p><%= tweet.full_text.html_safe %></p>
+    <p><%= tweet.text.html_safe %></p>
   <% end %>
-  <p><%= link_to "sign out", sign_out_path, method: :post %></p>
 <% else %>
   <p><%= link_to "Sign in with Twitter", "/auth/twitter" %></p>
 <% end %>

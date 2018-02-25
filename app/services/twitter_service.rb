@@ -7,25 +7,30 @@ class TwitterService
 
   def tweet(status)
     client.update(status)
+    store_timeline
   end
 
-  def tweets
-    fetch_tweets
+  def tweets_from_timeline
+    client.user_timeline(user.uid.to_i, count: 200)
   end
 
-  def fetch_tweets
-    client.user_timeline(user.uid.to_i)
-  end
-
-  def store_tweets
-    tweets.each do |tweet|
-      Tweet.create(
-        tid: tweet.id,
-        text: tweet.full_text,
-        url: tweet.url,
-        user_id: user.id,
-      )
+  def store_timeline
+    tweets_from_timeline.each do |tweet|
+      begin
+        save_tweet(tweet)
+      rescue
+        break
+      end
     end
+  end
+
+  def save_tweet(tweet)
+    Tweet.create(
+      tid: tweet.id,
+      text: tweet.full_text,
+      url: tweet.url,
+      user_id: user.id,
+    )
   end
 
   private
