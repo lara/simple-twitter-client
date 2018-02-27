@@ -10,13 +10,13 @@ class StoreTimelineService
 
   def store
       loop do
-        begin
-          begin
+        begin # Suspends current thread until Twitter's rate limit is reset
+          begin # Stops fetching once unique tweets from timeline are all stored
             save_tweets
           rescue ActiveRecord::RecordNotUnique
             break
           end
-          self.page += 1
+          next_page
           break if tweets.empty?
         rescue Twitter::Error::TooManyRequests => error
           sleep error.rate_limit.reset_in + 1
@@ -29,7 +29,7 @@ class StoreTimelineService
   end
 
   def tweets
-    client.user_timeline(user.uid.to_i, count: 2, page: page, tweet_mode: "extended")
+    client.user_timeline(user.uid.to_i, count: 200, page: page, tweet_mode: "extended")
   end
 
   def save_tweet(tweet)
@@ -39,5 +39,9 @@ class StoreTimelineService
       url: tweet.url,
       user_id: user.id,
     )
+  end
+
+  def next_page
+    self.page += 1
   end
 end
