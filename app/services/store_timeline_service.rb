@@ -10,7 +10,7 @@ class StoreTimelineService
     page = 1
       loop do
         begin
-          tweets = client.user_timeline(user.uid.to_i, count: 2, page: page)
+          tweets = client.user_timeline(user.uid.to_i, count: 2, page: page, tweet_mode: "extended")
           begin
             tweets.each(&method(:save_tweet))
           rescue ActiveRecord::RecordNotUnique
@@ -27,7 +27,7 @@ class StoreTimelineService
   def save_tweet(tweet)
     Tweet.create(
       tid: tweet.id,
-      text: tweet.full_text,
+      text: tweet.attrs[:full_text],
       url: tweet.url,
       user_id: user.id,
     )
