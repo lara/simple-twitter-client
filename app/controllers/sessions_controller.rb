@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
 
   def sign_in
     session[:user_id] = user.id
-    TwitterService.new(user).store_tweets
+    TwitterService.new(user).store_timeline
   end
 
   def sign_out
