@@ -2,6 +2,9 @@
 <% if current_user %>
   <p>Hello <%= current_user.name %>!</p>
   <p><%= link_to "sign out", sign_out_path, method: :post %></p>
+    <div class="pagination">
+      <%= paginate tweets %>
+    </div>
 
   <%= form_for :tweet, url: tweets_path do |f| %>
     <%= f.text_area :text, maxlength: 280 %>

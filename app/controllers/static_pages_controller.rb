@@ -7,6 +7,6 @@ class StaticPagesController < ApplicationController
 
   def tweets
     return nil unless current_user
-    current_user.tweets
+    current_user.tweets.page params[:page]
   end
 end
