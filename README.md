@@ -10,12 +10,12 @@ git clone https://github.com/laraaydin/simple-twitter-client.git
 gem install bundler
 ```
 
-2. Install the dependencies
+3. Install the dependencies
 ```sh
 bundle install
 ```
 
-3. Start the server
+4. Start the server
 ```sh
 rails s
 ```
