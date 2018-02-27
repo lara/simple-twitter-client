@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SimpleTwitterClient</title>
+    <title>SimpleTwitter Client</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   </head>
 
   <body>
-    <%= yield %>
+    <h1>Simple Twitter Client</h1>
+    <main>
+      <%= yield %>
+    </main>
   </body>
 </html>

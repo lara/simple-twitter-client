@@ -1,19 +1,26 @@
-<h1>Home</h1>
 <% if current_user %>
-  <p>Hello <%= current_user.name %>!</p>
-  <p><%= link_to "sign out", sign_out_path, method: :post %></p>
+  <div class="current-user">
+    <div class="greetings">Hello, <%= current_user.name %>!</div>
+    <div class="button sign-out"><%= link_to "Sign Out", sign_out_path, method: :post %></div>
+  </div>
+
+  <div class="post-tweet">
+    <%= form_for :tweet, url: tweets_path do |f| %>
+      <%= f.text_area :text, maxlength: 280, placeholder: "What's happening?" %>
+      <%= f.submit "Tweet", class: "button" %>
+    <% end %>
+  </div>
+
+  <div class="tweets">
+    <% tweets.each do |tweet| %>
+      <p><%= tweet.text.html_safe %></p>
+    <% end %>
     <div class="pagination">
       <%= paginate tweets %>
     </div>
+  </div>
 
-  <%= form_for :tweet, url: tweets_path do |f| %>
-    <%= f.text_area :text, maxlength: 280 %>
-    <%= f.submit %>
-  <% end %>
 
-  <% tweets.each do |tweet| %>
-    <p><%= tweet.text.html_safe %></p>
-  <% end %>
 <% else %>
-  <p><%= link_to "Sign in with Twitter", "/auth/twitter" %></p>
+  <div class="button"><%= link_to "Sign in with Twitter", "/auth/twitter" %></div>
 <% end %>

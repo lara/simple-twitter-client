@@ -13,3 +13,34 @@
  *= require_tree .
  *= require_self
  */
+
+html {
+  background: #fff;
+}
+
+body {
+  margin: 20px;
+}
+
+main {
+  min-height: 62vh;
+  width: 50%;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+h1 {
+  font: bold 50px 'Roboto', sans-serif;
+  color: #1f2a78;
+  text-align: center;
+  text-decoration: underline;
+  margin-top: 0;
+  margin-bottom: 60px;
+}
+
+p {
+  font: 15px 'Roboto', sans-serif;
+  letter-spacing: 0.05rem;
+  line-height: 1.5rem;
+  text-align: left;
+}
