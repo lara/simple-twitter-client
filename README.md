@@ -1,24 +1,21 @@
-# README
+# Simple Twitter Client
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+1. Clone this repository
+```sh
+git clone https://github.com/laraaydin/simple-twitter-client.git
+```
 
-Things you may want to cover:
+2. Install bundler if you don't already have it
+```sh
+gem install bundler
+```
 
-* Ruby version
+2. Install the dependencies
+```sh
+bundle install
+```
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+3. Start the server
+```sh
+rails s
+```
